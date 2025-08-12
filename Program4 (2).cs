@@ -20,6 +20,14 @@ namespace ConsoleApplication
                 Console.Write("Enter Customer Name: ");
                 string customerName = Console.ReadLine();
 
+                // CHANGE 1: Validate that customer name is not empty or whitespace
+                while (string.IsNullOrWhiteSpace(customerName))
+                {
+                    Console.WriteLine("Customer Name cannot be empty. Please enter a valid name.");
+                    Console.Write("Enter Customer Name: ");
+                    customerName = Console.ReadLine();
+                }
+
                 // Input Number Of Coffee Bags
                 Console.Write("Enter Number Of Coffee Bags (1-200): ");
                 int numCoffeeBags = Int32.Parse(Console.ReadLine());
@@ -68,11 +76,18 @@ namespace ConsoleApplication
                     discount = totalCost * 0.20;
                 }
 
+                // CHANGE 2: Get current date and time to print on the bill
+                DateTime currentDateTime = DateTime.Now;
+
                 // Print Bill
                 Console.WriteLine();
                 Console.WriteLine("--------------------------------------------");
                 Console.WriteLine("------------------- BILL -------------------");
                 Console.WriteLine("--------------------------------------------");
+
+                // Print date and time on bill
+                Console.WriteLine("Date/Time: {0}", currentDateTime);
+
                 Console.WriteLine("Customer Name: {0}", customerName);
                 Console.WriteLine("Number Of Coffee Bags: {0}", numCoffeeBags);
                 Console.WriteLine("Total Cost Of Bags: {0:C}", totalCost);
